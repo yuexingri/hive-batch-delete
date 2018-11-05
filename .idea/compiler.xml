@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="hive-batch-delete" target="1.5" />
+      <module name="hive-batch-delete" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>
