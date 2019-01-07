@@ -53,6 +53,25 @@ public class HiveClient {
         }
     }
 
+    public void dropAllTablesBykey(String key) throws Exception {
+        List<String> allDatabases = getAllDatabases() == null ? Lists.<String>newArrayList() : getAllDatabases();
+        for (String database : allDatabases) {
+            List<String> tables = getAllTablesByDatabase(database) == null ? Lists.<String>newArrayList() : getAllTablesByDatabase(database);
+            for (String table : tables) {
+                if (table.contains(key)) {
+                    dropTable(database, table);
+                }
+            }
+        }
+    }
+
+    public void dropAllTablesByDatabase(String database) throws Exception {
+        List<String> tables = getAllTablesByDatabase(database) == null ? Lists.<String>newArrayList() : getAllTablesByDatabase(database);
+        for (String table : tables) {
+            dropTable(database, table);
+        }
+    }
+
     public void dropTable(String database, String table) throws Exception {
         try {
             Connection connection = getConnection(database);
